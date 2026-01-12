@@ -1,0 +1,32 @@
+services:
+  wake-servicenow:
+    build: .
+    container_name: wake-servicenow
+    ports:
+      - "3002:3000"
+    environment:
+      - SERVICENOW_USERNAME=${SERVICENOW_USERNAME}
+      - SERVICENOW_PASSWORD=${SERVICENOW_PASSWORD}
+      - INSTANCE_URL=${INSTANCE_URL}
+      - PORT=3000
+      - NODE_ENV=production
+    volumes:
+      # Optional: Mount debug directory to persist screenshots/logs
+      - ./debug:/app/debug
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    # Resource limits (adjust based on your Raspberry Pi model)
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 2G
+        reservations:
+          cpus: '1.0'
+          memory: 512M
+

@@ -1,13 +1,8 @@
 {
   "name": "wake-servicenow-instance",
-  "version": "1.0.4",
-  "description": "A script to wake your servicenow instance",
+  "version": "2.0.0",
+  "description": "Automated tool to wake hibernating ServiceNow Personal Developer Instances - CLI and Web Service",
   "main": "index.js",
-  "repository": "git@github.com:coveooss/wake-servicenow-instance.git",
-  "author": {
-    "name": "Paul-Arthur Thiéry",
-    "email": "pathiery@coveo.com"
-  },
   "license": "Apache-2.0",
   "private": false,
   "type": "module",
@@ -15,10 +10,12 @@
     "wake-servicenow-instance": "index.js"
   },
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "server": "node server.js"
   },
   "dependencies": {
     "command-line-args": "^5.2.0",
+    "express": "^4.18.2",
     "ora": "^6.0.1",
     "playwright": "^1.17.2"
   },
